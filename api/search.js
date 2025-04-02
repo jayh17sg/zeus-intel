@@ -7,7 +7,6 @@ const openai = new OpenAI({
 
 const pinecone = new Pinecone({
   apiKey: process.env.PINECONE_API_KEY,
-  environment: process.env.PINECONE_ENV,
 });
 
 export default async function handler(req, res) {
@@ -35,7 +34,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ results: results.matches });
   } catch (error) {
-    console.error(error);
+    console.error('🔥 Error:', error);
     return res.status(500).json({ error: error.message });
   }
 }
