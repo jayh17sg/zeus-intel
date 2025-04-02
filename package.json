@@ -8,5 +8,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@pinecone-database/pinecone": "^5.1.1",
+    "openai": "^4.91.1"
+  }
 }
