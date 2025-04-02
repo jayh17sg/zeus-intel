@@ -1,12 +1,10 @@
 // api/search.js
-import { Configuration, OpenAIApi } from 'openai';
+import OpenAI from 'openai';
 import { PineconeClient } from '@pinecone-database/pinecone';
 
-const openai = new OpenAIApi(
-  new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  })
-);
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 const pinecone = new PineconeClient();
 
@@ -23,12 +21,12 @@ export default async function handler(req, res) {
       environment: process.env.PINECONE_ENV,
     });
 
-    const embed = await openai.createEmbedding({
+    const embed = await openai.embeddings.create({
       model: 'text-embedding-ada-002',
       input: query,
     });
 
-    const [{ embedding }] = embed.data.data;
+    const [{ embedding }] = embed.data;
 
     const index = pinecone.Index(process.env.PINECONE_INDEX);
 
@@ -44,4 +42,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: error.message });
   }
 }
-
