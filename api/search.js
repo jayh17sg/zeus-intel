@@ -1,12 +1,12 @@
 // api/search.js
 import OpenAI from 'openai';
-import { PineconeClient } from '@pinecone-database/pinecone';
+import { Pinecone } from '@pinecone-database/pinecone';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const pinecone = new PineconeClient();
+const pinecone = new Pinecone();
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
