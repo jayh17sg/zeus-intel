@@ -42,7 +42,7 @@ export default async function handler(req, res) {
 
     const results = await index.query({
       vector: embedding,
-      topK: 5,
+      topK: 50,
       includeMetadata: true,
     });
 
